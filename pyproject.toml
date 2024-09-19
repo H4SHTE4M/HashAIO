@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "hashaio"
+version = "0.1.0"
+description = "HashTeam All In One Management System"
+authors = ["lwzhenglittle <924695205@qq.com>"]
+license = "AGPL-3.0"
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.115.0"
+email-validator = "^2.2.0"
+httpx = "^0.27.2"
+Jinja2 = "^3.1.4"
+python-multipart = "^0.0.9"
+uvicorn = "^0.30.6"
+fastapi-cli = "^0.0.5"
+uvloop = "^0.20.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
