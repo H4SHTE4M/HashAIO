@@ -17,6 +17,9 @@ python-multipart = "^0.0.9"
 uvicorn = "^0.30.6"
 fastapi-cli = "^0.0.5"
 uvloop = "^0.20.0"
+pyjwt = "^2.9.0"
+passlib = {extras = ["bcrypt"], version = "^1.7.4"}
+sqlalchemy = "^2.0.35"
 
 
 [build-system]

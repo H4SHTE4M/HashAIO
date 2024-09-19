@@ -1,0 +1,2 @@
+USER = 1
+ADMIN = 0
