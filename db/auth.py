@@ -7,9 +7,6 @@ from sqlalchemy.orm import Session
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from passlib.context import CryptContext
 
-from schemas import UserModify, User
-from crud import get_user_by_email
-
 SECRET_KEY = "cd9c6fab65ca7e507153d7246ccc8219ba2b42d659ed9b1687d9b9697d53805c"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 120
@@ -32,12 +29,13 @@ def get_password_hash(password):
     return pwd_context.hash(password)
 
 def authenticate_user_by_email(db: Session, email: str, password: str):
+    from .crud import get_user_by_email
     user = get_user_by_email(db, email)
     if not user:
-        return False
+        return (False, None)
     if not verify_password(password, user.hashed_password):
-        return False
-    return create_access_token(data={"sub": user.email}, expires_delta=ACCESS_TOKEN_EXPIRE_MINUTES)
+        return (False, None)
+    return (True, create_access_token(data={"sub": user.email}, expires_delta=ACCESS_TOKEN_EXPIRE_MINUTES))
 
 def create_access_token(data: dict, expires_delta: int):
     to_encode = data.copy()
